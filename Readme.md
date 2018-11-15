@@ -1,3 +1,9 @@
+<!-- default file list -->
+*Files to look at*:
+
+* [Form1.cs](./CS/GridControlAutoSize/Form1.cs) (VB: [Form1.vb](./VB/GridControlAutoSize/Form1.vb))
+* [Program.cs](./CS/GridControlAutoSize/Program.cs) (VB: [Program.vb](./VB/GridControlAutoSize/Program.vb))
+<!-- default file list end -->
 # How to change the Grid's height  according to the total height of its rows
 
 
