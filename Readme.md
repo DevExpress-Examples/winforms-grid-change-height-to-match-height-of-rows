@@ -9,7 +9,7 @@
 
 This example shows how to dynamically change the height of the grid to match the total height of the visible rows.
 
-The `GridView.GetViewInfo` method is used to obtain the `GridViewInfo` object that contains information about grid UI elements (including the size). Note this method is hidden from IntelliSence
+The `GridView.GetViewInfo` method is used to obtain the `GridViewInfo` object that contains information about grid UI elements (including the size). Note this method is hidden from IntelliSence.
 
 # Files to Review
 
