@@ -29,24 +29,11 @@ namespace GridControlAutoSize {
         }
 
         private void UpdateGridSize() {
-            GridViewInfo viewInfo = (GridViewInfo)gridView1.GetViewInfo();
-            FieldInfo fi = typeof(GridView).GetField("scrollInfo", BindingFlags.Instance | BindingFlags.NonPublic);
-            ScrollInfo scrollInfo = (ScrollInfo)fi.GetValue(gridView1);
-            int width = viewInfo.ViewRects.IndicatorWidth;
-            foreach (GridColumn column in gridView1.VisibleColumns) {
-                if (viewInfo.GetColumnLeftCoord(column) < viewInfo.ViewRects.ColumnPanelWidth)
-                    gridView1.LeftCoord = width;
-                width += viewInfo.ColumnsInfo[column].Bounds.Width;
-            }
-            if (scrollInfo.VScrollVisible) width += scrollInfo.VScrollSize;
-            int height = viewInfo.CalcRealViewHeight(new Rectangle(0, 0, ClientSize.Width, ClientSize.Height), true);
-            if (scrollInfo.HScrollVisible) height += scrollInfo.HScrollSize;
-            width = Math.Max(GridMinWidth, width);
-            width = Math.Min(ClientSize.Width - gridControl1.Location.X, width);
-            height = Math.Max(GridMinHeight, height);
-            height = Math.Min(ClientSize.Height - gridControl1.Location.Y, height);
-            gridControl1.Size = new Size(width, height);
-            gridView1.LayoutChanged();
+             Size maxSize = new Size(ClientSize.Width, ClientSize.Height);
+             gridControl1.Size = gridControl1.CalcBestSize(maxSize, false);
+             gridControl1.MainView?.LayoutChanged();
+             gridControl1.Size = gridControl1.CalcBestSize(maxSize, true);
+             gridControl1.MainView?.LayoutChanged();
         }
 
         private void OnGridViewRowCountChanged(object sender, EventArgs e) {
