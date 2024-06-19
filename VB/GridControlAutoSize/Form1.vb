@@ -31,29 +31,11 @@ Namespace GridControlAutoSize
 		End Sub
 
 		Private Sub UpdateGridSize()
-			Dim viewInfo As GridViewInfo = CType(gridView1.GetViewInfo(), GridViewInfo)
-			Dim fi As FieldInfo = GetType(GridView).GetField("scrollInfo", BindingFlags.Instance Or BindingFlags.NonPublic)
-			Dim scrollInfo As ScrollInfo = DirectCast(fi.GetValue(gridView1), ScrollInfo)
-			Dim width As Integer = viewInfo.ViewRects.IndicatorWidth
-			For Each column As GridColumn In gridView1.VisibleColumns
-				If viewInfo.GetColumnLeftCoord(column) < viewInfo.ViewRects.ColumnPanelWidth Then
-					gridView1.LeftCoord = width
-				End If
-				width += viewInfo.ColumnsInfo(column).Bounds.Width
-			Next column
-			If scrollInfo.VScrollVisible Then
-				width += scrollInfo.VScrollSize
-			End If
-			Dim height As Integer = viewInfo.CalcRealViewHeight(New Rectangle(0, 0, ClientSize.Width, ClientSize.Height), True)
-			If scrollInfo.HScrollVisible Then
-				height += scrollInfo.HScrollSize
-			End If
-			width = Math.Max(GridMinWidth, width)
-			width = Math.Min(ClientSize.Width - gridControl1.Location.X, width)
-			height = Math.Max(GridMinHeight, height)
-			height = Math.Min(ClientSize.Height - gridControl1.Location.Y, height)
-			gridControl1.Size = New Size(width, height)
-			gridView1.LayoutChanged()
+			Dim maxSize As New Size(ClientSize.Width, ClientSize.Height)
+                        gridControl1.Size = gridControl1.CalcBestSize(maxSize, False)
+                        gridControl1.MainView?.LayoutChanged()
+                        gridControl1.Size = gridControl1.CalcBestSize(maxSize, True)
+                        gridControl1.MainView?.LayoutChanged()
 		End Sub
 
 		Private Sub OnGridViewRowCountChanged(ByVal sender As Object, ByVal e As EventArgs)
