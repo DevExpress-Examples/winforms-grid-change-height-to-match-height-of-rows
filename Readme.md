@@ -9,7 +9,7 @@
 
 This example shows how to dynamically change the height of the grid to match the total height of the visible rows.
 
-The `GridView.GetViewInfo` method is used to obtain the `GridViewInfo` object that contains information about grid UI elements (including the size). Note that this method is hidden from IntelliSense.
+In v.24.1+, the CalcBestSize method calculates the maximum allowable size of the Grid Control (to display as many data rows and columns as possible).
 
 # Files to Review
 
