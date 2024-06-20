@@ -4,12 +4,11 @@
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
 
-<!-- default file list end -->
 # WinForms Data Grid - How to change the grid's height according to the total height of its rows
 
-This example shows how to dynamically change the height of the grid to match the total height of the visible rows.
+This example dynamically changes the height of the grid to match the total height of the visible rows.
 
-In v.24.1+, the CalcBestSize method calculates the maximum allowable size of the Grid Control (to display as many data rows and columns as possible).
+The [GridControl.CalcBestSize](https://docs.devexpress.com/WindowsForms/DevExpress.XtraGrid.GridControl.CalcBestSize(System.Drawing.Size-System.Boolean)) method calculates the maximum allowable size of the Grid Control (to display as many data rows and columns as possible).
 
 # Files to Review
 
